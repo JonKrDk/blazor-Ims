@@ -1,5 +1,7 @@
 ﻿@page "/inventories"
 
+@inject ILogger<InventoryList> Logger
+
 <h3>InventoryList</h3>
 <br />
 <br />
@@ -7,5 +9,10 @@
 <InventoryListComponent></InventoryListComponent>
 
 @code {
+	protected async override Task OnInitializedAsync()
+	{
+		Logger.LogDebug("InventoryList component initialized.");
 
+		await base.OnInitializedAsync();
+	}
 }

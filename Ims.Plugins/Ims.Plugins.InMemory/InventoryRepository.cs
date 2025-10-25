@@ -1,13 +1,12 @@
 ﻿using Ims.CoreBusiness;
 using Ims.UseCases.PluginInterfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using Microsoft.Extensions.Logging;
 
 namespace Ims.Plugins.InMemory
 {
     public class InventoryRepository : IInventoryRepository
     {
+        private readonly ILogger<InventoryRepository> logger;
         private List<Inventory> inventories = new List<Inventory>()
         {
             new Inventory { Id = 1, Name = "Bike Seat", Quantity = 10, Price = 2.0 },
@@ -16,8 +15,15 @@ namespace Ims.Plugins.InMemory
             new Inventory { Id = 1, Name = "Bike Pedals", Quantity = 20, Price = 1.0 }
         };
 
+        public InventoryRepository(ILogger<InventoryRepository> logger)
+        {
+            this.logger = logger;
+        }
+
         public async Task<IEnumerable<Inventory>> GetInventoriesByNameAsync(string name)
         {
+            logger.LogDebug("Getting inventories by name: {name}", name);
+
             if (string.IsNullOrWhiteSpace(name))
                 return await Task.FromResult(inventories);
 

@@ -1,4 +1,6 @@
-﻿@if (this.Inventory is not null)
+﻿@inject ILogger<InventoryListItemComponent> Logger
+
+@if (this.Inventory is not null)
 {
 	<tr>
 		<td>@Inventory.Name</td>
@@ -13,4 +15,10 @@
 @code {
 	[Parameter]
 	public Inventory? Inventory { get; set; }
+
+	protected override void OnInitialized()
+	{
+		Logger.LogDebug("InventoryListItemComponent initialized for Inventory: {InventoryName}", Inventory?.Name);
+		base.OnInitialized();
+	}
 }

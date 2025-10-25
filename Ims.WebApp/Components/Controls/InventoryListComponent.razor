@@ -1,4 +1,5 @@
 ﻿@inject IViewInventoriesByNameUseCase ViewInventoriesByNameUseCase
+@inject ILogger<InventoryListComponent> Logger
 
 <table class="table">
 	
@@ -28,6 +29,7 @@
 
 	protected override async Task OnInitializedAsync()
 	{
+		Logger.LogDebug("InventoryListComponent initialized.");
 		inventoryList = (await ViewInventoriesByNameUseCase.ExecuteAsync()).ToList();
 	}
 }
