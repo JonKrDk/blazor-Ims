@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Ims.BackgroundRunner\Ims.BackgroundRunner.csproj" />
     <ProjectReference Include="..\Ims.WebApp\Ims.WebApp.csproj" />
   </ItemGroup>
 

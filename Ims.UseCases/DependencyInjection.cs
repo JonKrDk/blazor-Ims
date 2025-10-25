@@ -13,6 +13,7 @@ namespace Ims.UseCases
         public static IServiceCollection AddUseCases(this IServiceCollection services)
         {
             services.AddTransient<IViewInventoriesByNameUseCase, ViewInventoriesByNameUseCase>();
+            services.AddTransient<IAddInventoryUseCase, AddInventoryUseCase>();
 
             return services;
         }

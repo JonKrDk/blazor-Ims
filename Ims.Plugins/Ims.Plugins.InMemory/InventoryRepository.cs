@@ -20,6 +20,20 @@ namespace Ims.Plugins.InMemory
             this.logger = logger;
         }
 
+        public Task AddInventoryAsync(Inventory inventory)
+        {
+            if (inventories.Any(i => i.Name.Equals(inventory.Name, StringComparison.OrdinalIgnoreCase)))
+            {
+                return Task.CompletedTask;
+            }
+
+            var maxId = inventories.Max(q => q.Id);
+            inventory.Id = maxId + 1;
+
+            inventories.Add(inventory);
+            return Task.CompletedTask;
+        }
+
         public async Task<IEnumerable<Inventory>> GetInventoriesByNameAsync(string name)
         {
             logger.LogDebug("Getting inventories by name: {name}", name);

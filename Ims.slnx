@@ -3,6 +3,7 @@
     <Project Path="Ims.Plugins/Ims.Plugins.InMemory/Ims.Plugins.InMemory.csproj" />
   </Folder>
   <Project Path="Ims.AppHost/Ims.AppHost.csproj" />
+  <Project Path="Ims.BackgroundRunner/Ims.BackgroundRunner.csproj" Id="fa55d953-45f7-4c48-ae27-c26cdb4aca77" />
   <Project Path="Ims.CoreBusiness/Ims.CoreBusiness.csproj" />
   <Project Path="Ims.ServiceDefaults/Ims.ServiceDefaults.csproj" />
   <Project Path="Ims.UseCases/Ims.UseCases.csproj" />

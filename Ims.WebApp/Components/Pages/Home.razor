@@ -19,11 +19,13 @@
 	}
 </ul>
 
+<input value="3" min="0" max="100" step="1" type="range" />
+
 @code {
 	private List<Inventory>?  inventoryList;
 
 	protected override async Task OnInitializedAsync()
 	{
-		inventoryList = (await ViewInventoriesByNameUseCase.ExecuteAsync("whe")).ToList() ;
+		inventoryList = (await ViewInventoriesByNameUseCase.ExecuteAsync()).ToList() ;
 	}
 }
