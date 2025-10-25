@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/Ims.Plugins/">
+    <Project Path="Ims.Plugins/Ims.Plugins.InMemory/Ims.Plugins.InMemory.csproj" />
+  </Folder>
+  <Project Path="Ims.AppHost/Ims.AppHost.csproj" />
+  <Project Path="Ims.CoreBusiness/Ims.CoreBusiness.csproj" />
+  <Project Path="Ims.ServiceDefaults/Ims.ServiceDefaults.csproj" />
+  <Project Path="Ims.UseCases/Ims.UseCases.csproj" />
+  <Project Path="Ims.WebApp/Ims.WebApp.csproj" />
+</Solution>
