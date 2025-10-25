@@ -1,4 +1,6 @@
-﻿using Ims.UseCases.PluginInterfaces;
+﻿using Ims.UseCases.Inventories;
+using Ims.UseCases.Inventories.Interfaces;
+using Ims.UseCases.PluginInterfaces;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -10,7 +12,8 @@ namespace Ims.UseCases
     {
         public static IServiceCollection AddUseCases(this IServiceCollection services)
         {
-            // services.AddTransient<IInventoryRepository, InventoryRepository>();
+            services.AddTransient<IViewInventoriesByNameUseCase, ViewInventoriesByNameUseCase>();
+
             return services;
         }
     }

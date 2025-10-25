@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Ims.CoreBusiness\Ims.CoreBusiness.csproj" />
     <ProjectReference Include="..\Ims.Plugins\Ims.Plugins.InMemory\Ims.Plugins.InMemory.csproj" />
     <ProjectReference Include="..\Ims.ServiceDefaults\Ims.ServiceDefaults.csproj" />
   </ItemGroup>

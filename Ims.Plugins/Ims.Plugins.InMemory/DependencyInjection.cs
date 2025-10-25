@@ -7,7 +7,8 @@ namespace Ims.Plugins.InMemory
     {
         public static IServiceCollection AddPluginsInMemory(this IServiceCollection services)
         {
-            services.AddTransient<IInventoryRepository, InventoryRepository>();
+            services.AddSingleton<IInventoryRepository, InventoryRepository>();
+
             return services;
         }
     }
