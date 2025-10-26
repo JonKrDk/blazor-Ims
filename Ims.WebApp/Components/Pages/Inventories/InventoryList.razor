@@ -2,19 +2,25 @@
 
 @inject ILogger<InventoryList> Logger
 
-<h3>InventoryList</h3>
-<br />
-<br />
+<h3 class="pb-3">InventoryList</h3>
 
-<InventoryListComponent></InventoryListComponent>
+<SearchComponent OnSearch="HandleSearch" />
+
+<InventoryListComponent SearchInventoryFilter=@this.InventoryNameToSearch />
 
 <a href="/inventories/add" class="btn btn-primary">Add</a>
 
 @code {
+	private string? InventoryNameToSearch { get; set; } = string.Empty;
+
 	protected async override Task OnInitializedAsync()
 	{
 		Logger.LogDebug("InventoryList component initialized.");
-
 		await base.OnInitializedAsync();
+	}
+
+	private async Task HandleSearch(string searchFilter)
+	{
+		InventoryNameToSearch = searchFilter;
 	}
 }

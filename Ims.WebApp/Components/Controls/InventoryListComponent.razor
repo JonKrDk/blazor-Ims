@@ -27,9 +27,17 @@
 @code {
 	private List<Inventory>? inventoryList;
 
+	[Parameter]
+	public string? SearchInventoryFilter { get; set; }
+
 	protected override async Task OnInitializedAsync()
 	{
-		Logger.LogDebug("InventoryListComponent initialized.");
-		inventoryList = (await ViewInventoriesByNameUseCase.ExecuteAsync()).ToList();
+		Logger.LogDebug("InventoryListComponent.OnInitializedAsync()");
+	}
+
+	protected override async Task OnParametersSetAsync()
+	{
+		Logger.LogDebug("InventoryListComponent.OnParametersSetAsync()");
+		inventoryList = (await ViewInventoriesByNameUseCase.ExecuteAsync(SearchInventoryFilter ?? string.Empty)).ToList();
 	}
 }
