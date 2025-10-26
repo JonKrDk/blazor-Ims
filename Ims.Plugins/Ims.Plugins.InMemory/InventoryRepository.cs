@@ -10,9 +10,9 @@ namespace Ims.Plugins.InMemory
         private List<Inventory> inventories = new List<Inventory>()
         {
             new Inventory { Id = 1, Name = "Bike Seat", Quantity = 10, Price = 2.0 },
-            new Inventory { Id = 1, Name = "Bike Body", Quantity = 10, Price = 15.0 },
-            new Inventory { Id = 1, Name = "Bike Wheels", Quantity = 20, Price = 8.0 },
-            new Inventory { Id = 1, Name = "Bike Pedals", Quantity = 20, Price = 1.0 }
+            new Inventory { Id = 2, Name = "Bike Body", Quantity = 10, Price = 15.0 },
+            new Inventory { Id = 3, Name = "Bike Wheels", Quantity = 20, Price = 8.0 },
+            new Inventory { Id = 4, Name = "Bike Pedals", Quantity = 20, Price = 1.0 }
         };
 
         public InventoryRepository(ILogger<InventoryRepository> logger)
@@ -41,7 +41,7 @@ namespace Ims.Plugins.InMemory
                 return Task.CompletedTask;
             }
 
-            if (inventories.Any(i => i.Name.Equals(inventory.Name, StringComparison.OrdinalIgnoreCase)))
+            if (!inventories.Any(q => q.Name.Equals(inventory.Name, StringComparison.OrdinalIgnoreCase)))
             {
                 return Task.CompletedTask;
             }

@@ -44,12 +44,15 @@
 
 @code {
 	[SupplyParameterFromForm(FormName = "formInventory")]
-	private Inventory inventory { get; set; } = new Inventory();
+	private Inventory? inventory { get; set; }
 
 
 	private async Task Save()
 	{
-		await AddInventoryUseCase.ExecuteAsync(inventory);
-		NavigationManager.NavigateTo("/inventories");
+		if (inventory is not null)
+		{
+			await AddInventoryUseCase.ExecuteAsync(inventory);
+			NavigationManager.NavigateTo("/inventories");
+		}
 	}
 }

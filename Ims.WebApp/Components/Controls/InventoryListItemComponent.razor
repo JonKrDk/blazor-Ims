@@ -7,9 +7,8 @@
 		<td>@Inventory.Quantity</td>
 		<td>@Inventory.Price</td>
 		<td>
-			<a 
-				class="btn btn-light"
-				href="/inventories/edit/@Inventory.Id">Edit</a>
+			<a class="btn btn-light"
+			href="/inventories/edit/@Inventory.Id">Edit</a>
 		</td>
 	</tr>
 }
@@ -18,9 +17,9 @@
 	[Parameter]
 	public Inventory? Inventory { get; set; }
 
-	protected override void OnInitialized()
+	protected override async Task OnInitializedAsync()
 	{
-		Logger.LogDebug("InventoryListItemComponent initialized for Inventory: {InventoryName}", Inventory?.Name);
-		base.OnInitialized();
+		Logger.LogDebug("InventoryListItemComponent.OnInitialized()");
+		await base.OnInitializedAsync();
 	}
 }
