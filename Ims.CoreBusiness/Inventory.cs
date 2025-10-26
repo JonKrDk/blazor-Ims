@@ -18,5 +18,10 @@ namespace Ims.CoreBusiness
 
         [Range(0, int.MaxValue, ErrorMessage = "Price cannot be negative")]
         public double Price { get; set; }
+
+        public override string ToString()
+        {
+            return $"Id: {Id}, Name: {Name}, Quantity: {Quantity}, Price: {Price}";
+        }
     }
 }

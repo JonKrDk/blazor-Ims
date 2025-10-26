@@ -34,6 +34,29 @@ namespace Ims.Plugins.InMemory
             return Task.CompletedTask;
         }
 
+        public Task UpdateInventoryAsync(Inventory inventory)
+        {
+            if (inventories.Any(q => q.Id != inventory.Id && q.Name.Equals(inventory.Name, StringComparison.OrdinalIgnoreCase)))
+            {
+                return Task.CompletedTask;
+            }
+
+            if (inventories.Any(i => i.Name.Equals(inventory.Name, StringComparison.OrdinalIgnoreCase)))
+            {
+                return Task.CompletedTask;
+            }
+
+            var inventoryToUpdate = inventories.FirstOrDefault(i => i.Id == inventory.Id);
+            if (inventoryToUpdate is not null)
+            {
+                inventoryToUpdate.Name = inventory.Name;
+                inventoryToUpdate.Quantity = inventory.Quantity;
+                inventoryToUpdate.Price = inventory.Price;
+            }
+
+            return Task.CompletedTask;
+        }
+
         public async Task<IEnumerable<Inventory>> GetInventoriesByNameAsync(string name)
         {
             logger.LogDebug("Getting inventories by name: {name}", name);
