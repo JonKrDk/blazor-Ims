@@ -1,4 +1,5 @@
 ﻿@inject ILogger<InventoryListItemComponent> Logger
+@inject IDeleteInventoryUseCase DeleteInventoryUseCase
 
 @if (this.Inventory is not null)
 {
@@ -8,7 +9,8 @@
 		<td>@Inventory.Price</td>
 		<td>
 			<a class="btn btn-light"
-			href="/inventories/edit/@Inventory.Id">Edit</a>
+			   href="/inventories/edit/@Inventory.Id">Edit</a>
+			<button class="btn btn-warning" type="button" @onclick="OnButtonClick">Delete</button>
 		</td>
 	</tr>
 }
@@ -17,9 +19,25 @@
 	[Parameter]
 	public Inventory? Inventory { get; set; }
 
+	[Parameter]
+	public EventCallback OnDeleted { get; set; }
+
+
 	protected override async Task OnInitializedAsync()
 	{
 		Logger.LogDebug("InventoryListItemComponent.OnInitialized()");
 		await base.OnInitializedAsync();
+	}
+
+	private async Task OnButtonClick(MouseEventArgs args)
+	{
+		Logger.LogDebug("InventoryListItemComponent.OnButtonClick()");
+		
+		if (Inventory is not null)
+		{
+			await DeleteInventoryUseCase.ExecuteAsync(Inventory);
+			await OnDeleted.InvokeAsync();
+
+		}
 	}
 }

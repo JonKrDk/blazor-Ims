@@ -15,6 +15,7 @@ namespace Ims.UseCases
             services.AddTransient<IViewInventoriesByNameUseCase, ViewInventoriesByNameUseCase>();
             services.AddTransient<IAddInventoryUseCase, AddInventoryUseCase>();
             services.AddTransient<IEditInventoryUseCase, EditInventoryUseCase>();
+            services.AddTransient<IDeleteInventoryUseCase, DeleteInventoryUseCase>();
             services.AddTransient<IGetInventoryByIdUseCase, GetInventoryByIdUseCase>();
 
             return services;

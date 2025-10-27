@@ -5,46 +5,49 @@
 
 <h3 class="pb-3">Add Inventory</h3>
 
-<EditForm Model="inventory" FormName="formInventory" OnValidSubmit="Save">
+@if (inventory is not null)
+{
+	<EditForm Model=@inventory FormName="formInventory" OnValidSubmit="Save">
 
-	<DataAnnotationsValidator />
-@* 	<ValidationSummary /> *@
-	<div class="form-group">
-		<label for="name">Inventory Name</label>
-		<InputText 
+		<DataAnnotationsValidator />
+		@* 	<ValidationSummary /> *@
+		<div class="form-group">
+			<label for="name">Inventory Name</label>
+			<InputText 
 			id="name"
 			@bind-Value="inventory.Name" 
 			class="form-control" />
-		<ValidationMessage For="@(() => inventory.Name)" />
-	</div>
+			<ValidationMessage For="@(() => inventory.Name)" />
+		</div>
 
-	<div class="form-group">
-		<label for="quantity">Quantity</label>
-		<InputNumber 
+		<div class="form-group">
+			<label for="quantity">Quantity</label>
+			<InputNumber 
 			id="quantity"
 			@bind-Value="inventory.Quantity"
 			class="form-control" />
-		<ValidationMessage For="@(() => inventory.Quantity)" />
-	</div>
+			<ValidationMessage For="@(() => inventory.Quantity)" />
+		</div>
 
-	<div class="form-group">
-		<label for="price">Price</label>
-		<InputNumber 
+		<div class="form-group">
+			<label for="price">Price</label>
+			<InputNumber 
 			id="price"
 			@bind-Value="inventory.Price"
 			class="form-control" />
-		<ValidationMessage For="@(() => inventory.Price)" />
-	</div>
+			<ValidationMessage For="@(() => inventory.Price)" />
+		</div>
 
-	<button type="submit" class="btn btn-primary mt-3">Save</button>
+		<button type="submit" class="btn btn-primary mt-3">Save</button>
 
-	<a href="/inventories" class="btn btn-warning mt-3">Cancel</a>
+		<a href="/inventories" class="btn btn-warning mt-3">Cancel</a>
 
-</EditForm>
+	</EditForm>
+}
 
 @code {
 	[SupplyParameterFromForm(FormName = "formInventory")]
-	private Inventory? inventory { get; set; }
+	private Inventory inventory { get; set; } = new Inventory();
 
 
 	private async Task Save()

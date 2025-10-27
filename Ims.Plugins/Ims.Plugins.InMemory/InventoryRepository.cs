@@ -1,12 +1,14 @@
 ﻿using Ims.CoreBusiness;
 using Ims.UseCases.PluginInterfaces;
 using Microsoft.Extensions.Logging;
+using System.Xml.Linq;
 
 namespace Ims.Plugins.InMemory
 {
     public class InventoryRepository : IInventoryRepository
     {
         private readonly ILogger<InventoryRepository> logger;
+
         private List<Inventory> inventories = new List<Inventory>()
         {
             new Inventory { Id = 1, Name = "Bike Seat", Quantity = 10, Price = 2.0 },
@@ -22,6 +24,8 @@ namespace Ims.Plugins.InMemory
 
         public Task AddInventoryAsync(Inventory inventory)
         {
+            logger.LogDebug($"InventoryRepository.AddInventoryAsync(inventory={inventory})");
+
             if (inventories.Any(i => i.Name.Equals(inventory.Name, StringComparison.OrdinalIgnoreCase)))
             {
                 return Task.CompletedTask;
@@ -36,6 +40,8 @@ namespace Ims.Plugins.InMemory
 
         public Task UpdateInventoryAsync(Inventory inventory)
         {
+            logger.LogDebug($"InventoryRepository.UpdateInventoryAsync(inventory={inventory})");
+
             if (inventories.Any(q => q.Id != inventory.Id && q.Name.Equals(inventory.Name, StringComparison.OrdinalIgnoreCase)))
             {
                 return Task.CompletedTask;
@@ -57,9 +63,24 @@ namespace Ims.Plugins.InMemory
             return Task.CompletedTask;
         }
 
+        public Task DeleteInventoryAsync(Inventory inventory)
+        {
+            logger.LogDebug($"InventoryRepository.DeleteInventoryAsync(inventory={inventory})");
+
+            var inventoryToDelete = inventories.FirstOrDefault(i => i.Id == inventory.Id);
+
+            if (inventoryToDelete is not null)
+            {
+                inventories.Remove(inventoryToDelete);
+            }
+
+            return Task.CompletedTask;
+        }
+
         public async Task<IEnumerable<Inventory>> GetInventoriesByNameAsync(string name)
         {
-            logger.LogDebug("Getting inventories by name: {name}", name);
+            logger.LogDebug($"InventoryRepository.GetInventoriesByNameAsync(name={name}");
+
 
             if (string.IsNullOrWhiteSpace(name))
                 return await Task.FromResult(inventories);
@@ -69,6 +90,8 @@ namespace Ims.Plugins.InMemory
 
         public async Task<Inventory?> GetInventoryByIdAsync(int id)
         {
+            logger.LogDebug($"InventoryRepository.GetInventoryByIdAsync(id={id}");
+
             return await Task.FromResult(inventories.FirstOrDefault<Inventory>(q => q.Id == id));
         }
     }

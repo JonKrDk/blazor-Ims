@@ -9,6 +9,7 @@ namespace Ims.UseCases.PluginInterfaces
     {
         Task AddInventoryAsync(Inventory inventory);
         Task UpdateInventoryAsync(Inventory inventory);
+        Task DeleteInventoryAsync(Inventory inventory);
         Task<IEnumerable<Inventory>> GetInventoriesByNameAsync(string name);
         Task<Inventory?> GetInventoryByIdAsync(int id);
     }

@@ -12,7 +12,9 @@ public class Program
         builder.AddServiceDefaults();
 
         // Add services to the container.
-        builder.Services.AddRazorComponents();
+        builder.Services.AddRazorComponents()
+             .AddInteractiveServerComponents();
+
         builder.Services.AddPluginsInMemory();
         builder.Services.AddUseCases();
 
@@ -34,7 +36,8 @@ public class Program
         app.UseAntiforgery();
 
         app.MapStaticAssets();
-        app.MapRazorComponents<App>();
+        app.MapRazorComponents<App>()
+            .AddInteractiveServerRenderMode();
 
         app.Run();
     }

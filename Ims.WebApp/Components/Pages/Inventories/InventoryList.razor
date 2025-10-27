@@ -6,7 +6,7 @@
 
 <SearchComponent OnSearch="HandleSearch" />
 
-<InventoryListComponent SearchInventoryFilter=@this.InventoryNameToSearch />
+<InventoryListComponent SearchInventoryFilter=@this.InventoryNameToSearch @rendermode="InteractiveServer" />
 
 <a href="/inventories/add" class="btn btn-primary">Add</a>
 

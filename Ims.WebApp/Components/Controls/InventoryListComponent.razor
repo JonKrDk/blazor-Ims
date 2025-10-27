@@ -17,7 +17,7 @@
 		{
 			@foreach (var inventory in inventoryList)
 			{
-				<InventoryListItemComponent Inventory="inventory" />
+				<InventoryListItemComponent @rendermode="InteractiveServer" Inventory="inventory" OnDeleted="ItemDeletedAsync"  />
 			}
 		}
 	</tbody>
@@ -38,6 +38,11 @@
 	protected override async Task OnParametersSetAsync()
 	{
 		Logger.LogDebug("InventoryListComponent.OnParametersSetAsync()");
+		inventoryList = (await ViewInventoriesByNameUseCase.ExecuteAsync(SearchInventoryFilter ?? string.Empty)).ToList();
+	}
+
+	private async Task ItemDeletedAsync()
+	{
 		inventoryList = (await ViewInventoriesByNameUseCase.ExecuteAsync(SearchInventoryFilter ?? string.Empty)).ToList();
 	}
 }
