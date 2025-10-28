@@ -8,6 +8,7 @@ namespace Ims.Plugins.InMemory
         public static IServiceCollection AddPluginsInMemory(this IServiceCollection services)
         {
             services.AddSingleton<IInventoryRepository, InventoryRepository>();
+            services.AddSingleton<IProductRepository, ProductRepository>();
 
             return services;
         }
